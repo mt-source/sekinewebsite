@@ -14,6 +14,27 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
+// ハンバーガーメニューの処理
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+const body = document.body;
+
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
+    body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+});
+
+// メニューリンクをクリックしたときにメニューを閉じる
+const menuLinks = document.querySelectorAll('.nav-links a');
+menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+        body.style.overflow = '';
+    });
+});
+
 // スクロールアニメーション
 const fadeElements = document.querySelectorAll('.vision-card, .service-card, .about-item');
 
